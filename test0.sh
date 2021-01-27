@@ -2,14 +2,15 @@
 echo "Test0 - on variables"
 
 
-# Specify interpreter in the first line.
-# No space in bash script.
-# Variables have global scope, unless specified as "local".
-# Variables have no-type, basically all are string, treated as arithmetic on operators.
-# Variables are set by  VARNAME=VALUE, or by let VARNAME=1+2+3 for arithmetic.
-# Variables are get by $VARNAME, or by "$VARNAME" if there are spaces in VARNAME's value.
+# Specify interpreter in the first line
+# No   space before  and after =
+# Need space after [ and before ]
+# Variables have global scope (within a file), unless specified as "local"
+# Variables have no-type, basically all are string, treated as arithmetic on operators
+# Variables are set by  VARNAME=VALUE, or by let VARNAME=1+2+3 for arithmetic
+# Variables are get by $VARNAME, or by "$VARNAME" if there are spaces in VARNAME's value
 
-# Remember to add "$0" below to handle space-problem.
+# Remember to add "$0" below to handle space-problem
 # $#           is number of argument
 # $0           is script name
 # $1           is 1st argument
@@ -45,19 +46,30 @@ FILENAME="$(basename $0)"
 FOLDER="folder for $FILENAME"
 rm -rf "$FOLDER"
 mkdir  "$FOLDER"
-echo "created folder status $?"
-cd "#FOLDER"
-
-for N in {1..5}
-do
-    FILENAME="file$N"
-    touch FILENAME
-    echo "created $FILENAME at second $SECONDS with serial $RANDOM"
-done
 
 
+if [ $? -eq 0 ] # if [$? -eq 0] results in runtime error, there must be space
+then
+    echo "created folder status succeed"
+
+    # Create files then ...
+    cd "$FOLDER"
+    for N in {1..5}
+    do
+        FILENAME="file$N"
+        touch $FILENAME
+        echo "created $FILENAME at second $SECONDS with serial $RANDOM"
+    done
+else
+    echo "created folder status failed"
+fi
 
 
 # If "Unexpected end of file" error happens when running the script, 
 # it is probably due to an invalid but hidden character at the end,
 # we can remove it in nvim by command ":set fileformat=unix".
+
+
+
+
+
