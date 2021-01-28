@@ -26,6 +26,7 @@ echo "test1 - on variables"
 # $LINENO      is current line number
 # $SECONDS     is number of seconds since the script is started
 # $(command)   is command substitution, which capture command output into a variable
+# ${#VAR_NAME} is length of value inside VAR_NAME
 
 
 echo "num of arg is $#"
@@ -88,9 +89,9 @@ fct () {
 }
 
 print() {
-    echo "test0::MY_LOCAL_VAR   = $MY_LOCAL_VAR"
-    echo "test0::MY_GLOBAL_VAR  = $MY_GLOBAL_VAR"
-    echo "test0::MY_EXPORT_VAR  = $MY_EXPORT_VAR"
+    echo "test0::MY_LOCAL_VAR  = $MY_LOCAL_VAR (length = ${#MY_LOCAL_VAR})"
+    echo "test0::MY_GLOBAL_VAR = $MY_GLOBAL_VAR (length = ${#MY_GLOBAL_VAR})"
+    echo "test0::MY_EXPORT_VAR = $MY_EXPORT_VAR (length = ${#MY_EXPORT_VAR})"
 }
 
 print
