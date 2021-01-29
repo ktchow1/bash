@@ -26,13 +26,35 @@ for x in $(fct1); do
 done
 
 
-
-
-
+# Demonstration of :
 # pushd
 # popd
 # dirname
 # basename
+
+fn=$(pwd)
+echo "pwd      = $fn"
+echo "dirname  = $( dirname $fn )"
+echo "basename = $( basename $fn )"
+
+# For every "pushd", it will auto invoke "dirs"
+# we can disable the print by redirecting std::out[1] and std::err[2] to /dev/null
+pushd ~/dev/algo/src &> /dev/null
+pushd ~/dev/bash     &> /dev/null 
+pushd ~/dev/YExperimental/YLibrary/include &> /dev/null
+pushd ~/dev/YExperimental/YLibrary/src     &> /dev/null
+
+for x in $(dirs); do
+    echo "directory inside stack is $x."
+done
+
+
+popd &> /dev/null
+echo "pop once ... pwd = $(pwd)"
+popd &> /dev/null
+echo "pop once ... pwd = $(pwd)"
+popd &> /dev/null
+echo "pop once ... pwd = $(pwd)"
 
 
 
