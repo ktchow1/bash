@@ -77,7 +77,7 @@ fi
 echo
 echo 'Lets test with variables with different scope'
 
-fct () {
+fct() {
     local MY_LOCAL_VAR='This is local variable.'
     MY_GLOBAL_VAR='This is global variable.'
     MY_EXPORT_VAR='This is exported variable.'

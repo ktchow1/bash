@@ -22,7 +22,12 @@ let "varC = ($var0 + $var1) / 2"      # approach 1b : using let,  space is allow
 varD=$(expr $var0 + $var1)            # approach 2  : using expr, space is allowed without double quote, but 1 operator only
 varE=$(expr $varD / 2)        
 varF=$(( ($var0 + $var1) / 2 ))       # approach 3  : using $(()), space is allowed, multi-operator supported
-                                      #               space inside is $(()) is added for clarity, not necessary
+                                      
+
+# Approach 3 is C-style, we can put C-language inside (())
+# hence space is possible inside (())
+# while $ is for dereference as variable
+# we will use this syntax in loop too ...
 
 echo average equals of $var0 and $var1 is $varA
 echo average equals of $var0 and $var1 is $varB
